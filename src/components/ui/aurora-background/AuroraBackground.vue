@@ -32,12 +32,12 @@
 </template>
 
 <script setup>
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 const props = defineProps({
   radialGradient: { type: Boolean, required: false, default: true },
   class: { type: String, required: false },
-});
+})
 </script>
 
 <style scoped>
