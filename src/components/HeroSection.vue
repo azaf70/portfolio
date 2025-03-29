@@ -1,15 +1,12 @@
 <script setup>
-import { computed } from 'vue'
-import { useColorMode } from '@vueuse/core'
-import { ParticlesBg } from '@/components/ui/particles-bg/index.js'
 import { ShimmerButton } from '@/components/ui/shimmer-button/index.js'
-
-const isDark = computed(() => useColorMode().value === 'dark')
+import { FlipWords } from '@/components/ui/flip-words/index.js'
+import { BlurReveal } from '@/components/ui/blur-reveal/index.js'
 </script>
 
 <template>
   <div
-    class="relative flex w-full min-h-screen flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
+    class="relative flex w-full min-h-screen flex-col items-center justify-center overflow-hidden rounded-lg border-t bg-background md:shadow-xl"
   >
     <Transition
       appear
@@ -18,16 +15,22 @@ const isDark = computed(() => useColorMode().value === 'dark')
       enter-to-class="opacity-100 translate-y-0"
     >
       <div class="text-center px-6">
-        <h1 class="text-white mb-4 text-4xl font-bold sm:text-5xl md:text-6xl">
-          Hi, I'm
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00cea8] to-[#bf61ff]"
-            >Abdullah Zafar</span
+        <BlurReveal :delay="0.2" :duration="0.75" class="p-8">
+          <h1
+            class="text-white mb-4 text-4xl font-bold sm:text-5xl md:text-6xl transition duration-700 ease-in-out"
           >
-        </h1>
-        <p class="text-white/80 max-w-3xl mx-auto text-lg sm:text-xl md:text-2xl">
-          I develop web applications, user interfaces and create digital experiences that leave a
-          lasting impression.
-        </p>
+            Hi, I'm
+            <FlipWords
+              :duration="3000"
+              :words="['Abdullah Zafar', 'A Full Stack Developer', 'Performant', 'Versatile']"
+              class="inline-block bg-clip-text bg-gradient-to-r from-teal-400 via-purple-500 to-indigo-500 bg-[length:200%_auto] animate-gradient-x font-bold transition-all duration-500 ease-in-out [text-shadow:_0_0_80px_rgb(45_212_191_/_70%),_0_0_40px_rgb(147_51_234_/_60%),_0_0_20px_rgb(99_102_241_/_50%)]"
+            />
+          </h1>
+          <p class="text-white/80 max-w-4xl mx-auto text-lg sm:text-xl md:text-2xl">
+            I develop web applications, user interfaces and create digital experiences that leave a
+            lasting impression.
+          </p>
+        </BlurReveal>
 
         <Transition
           appear
@@ -47,14 +50,7 @@ const isDark = computed(() => useColorMode().value === 'dark')
         </Transition>
       </div>
     </Transition>
-    <ParticlesBg
-      class="absolute inset-0"
-      :quantity="300"
-      :ease="100"
-      :color="isDark ? '#FFF' : '#000'"
-      :staticity="10"
-      refresh
-    />
   </div>
 </template>
+
 <style scoped></style>
