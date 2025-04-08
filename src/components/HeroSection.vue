@@ -43,7 +43,7 @@ import { BlurReveal } from '@/components/ui/blur-reveal/index.js'
               <span
                 class="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white lg:text-lg dark:from-white dark:to-slate-900/10"
               >
-                View My Work
+                View My Work!
               </span>
             </ShimmerButton>
           </div>
