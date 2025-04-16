@@ -22,13 +22,18 @@ import { BlurReveal } from '@/components/ui/blur-reveal/index.js'
             Hi, I'm
             <FlipWords
               :duration="3000"
-              :words="['Abdullah Zafar', 'A Full Stack Developer', 'Performant', 'Versatile']"
+              :words="[
+                'Abdullah Zafar',
+                'A Full Stack Developer',
+                'Performance-Driven',
+                'Adaptable & Creative',
+              ]"
               class="inline-block bg-clip-text bg-gradient-to-r from-teal-400 via-purple-500 to-indigo-500 bg-[length:200%_auto] animate-gradient-x font-bold transition-all duration-500 ease-in-out [text-shadow:_0_0_80px_rgb(45_212_191_/_70%),_0_0_40px_rgb(147_51_234_/_60%),_0_0_20px_rgb(99_102_241_/_50%)]"
             />
           </h1>
           <p class="text-white/80 max-w-4xl mx-auto text-lg sm:text-xl md:text-2xl">
-            I develop web applications, user interfaces and create digital experiences that leave a
-            lasting impression.
+            I craft modern web applications, intuitive user interfaces, and meaningful digital
+            experiences that connect, inspire, and perform.
           </p>
         </BlurReveal>
 
