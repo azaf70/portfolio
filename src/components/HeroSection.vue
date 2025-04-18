@@ -25,7 +25,7 @@ import { BlurReveal } from '@/components/ui/blur-reveal/index.js'
               :words="[
                 'Abdullah Zafar',
                 'A Full Stack Developer',
-                'Performance-Driven',
+                'Performance Driven',
                 'Adaptable & Creative',
               ]"
               class="inline-block bg-clip-text bg-gradient-to-r from-teal-400 via-purple-500 to-indigo-500 bg-[length:200%_auto] animate-gradient-x font-bold transition-all duration-500 ease-in-out [text-shadow:_0_0_80px_rgb(45_212_191_/_70%),_0_0_40px_rgb(147_51_234_/_60%),_0_0_20px_rgb(99_102_241_/_50%)]"
