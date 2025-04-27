@@ -1,98 +1,116 @@
 <template>
-  <div ref="timelineContainerRef" class="w-full min-h-full font-sans md:px-10 dark:bg-neutral-950">
-    <div ref="timelineRef" class="relative z-0 mx-auto max-w-7xl pb-20">
+  <div ref="timelineContainerRef" class="w-full text-white px-4 sm:px-6 lg:px-8 py-16">
+    <div class="relative mx-auto max-w-5xl">
+      <!-- Static center line (desktop only) -->
+      <div class="hidden md:block absolute inset-y-0 left-1/2 w-px bg-neutral-700" />
+
+      <!-- Animated beam (desktop only) -->
+      <Motion
+        as="div"
+        class="hidden md:block absolute inset-y-0 left-1/2 w-px rounded-full bg-gradient-to-t from-[#bf61ff] via-[#00cea8] to-transparent"
+        :style="{ height: beamHeight, opacity: beamOpacity }"
+      />
+
+      <!-- Timeline entries -->
       <div
-        v-for="(item, index) in props.items"
-        :key="item.id + index"
-        class="flex justify-start pt-10 md:gap-10 md:pt-40"
+        v-for="(item, i) in items"
+        :key="item.id"
+        class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-start"
       >
+        <!-- LEFT PANEL (even items) -->
         <Motion
+          v-if="i % 2 === 0"
           as="div"
-          class="relative flex items-center md:w-1/3"
-          :initial="{ opacity: 0, x: -50 }"
+          class="col-start-1 col-end-2 md:col-start-1 md:col-end-2 bg-neutral-800/50 rounded-2xl p-4 md:p-8 shadow-lg md:my-12 lg:my-12"
+          :initial="{ opacity: 0, x: -60 }"
           :in-view="{ opacity: 1, x: 0 }"
-          :transition="{ type: 'spring', stiffness: 80, damping: 12, delay: i * 0.2 }"
-          viewport="{ amount: 0.2, once: false }"
+          :transition="{ type: 'spring', stiffness: 90, damping: 14, delay: i * 0.15 }"
+          viewport="{ amount: 0.3, once: false }"
         >
-          <div
-            class="sticky top-40 z-40 flex max-w-xs flex-col items-center self-start lg:max-w-sm md:w-full md:flex-row"
-          >
-            <div
-              class="absolute left-5 lg:left-5 flex size-6 items-center justify-center rounded-full bg-white md:left-3 dark:bg-black"
-            >
-              <div
-                class="size-2 rounded-full border border-neutral-300 bg-neutral-200 p-2 dark:border-neutral-700 dark:bg-neutral-800"
-              />
-            </div>
-            <h3
-              class="hidden text-xl font-bold text-neutral-500 md:block md:pl-20 md:text-5xl dark:text-neutral-500"
-            >
-              {{ item.label }}
-            </h3>
-          </div>
-          <slot :name="item.id"></slot>
+          <h3 class="text-2xl lg:text-3xl font-extrabold mb-3">{{ item.title }}</h3>
+          <p class="font-semibold text-lg lg:text-xl mb-1 text-neutral-300">
+            {{ item.company_name }}
+          </p>
+          <p class="text-sm lg:text-base mb-4 text-neutral-500">{{ item.date }}</p>
+          <ul class="list-disc list-inside space-y-2 text-neutral-300">
+            <li v-for="(p, idx) in item.points" :key="idx">{{ p }}</li>
+          </ul>
         </Motion>
-      </div>
-      <div
-        :style="{
-          height: height + 'px',
-        }"
-        class="absolute left-8 top-0 w-[2px] overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-0% via-neutral-200 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8 dark:via-neutral-700"
-      >
+
+        <!-- spacer on mobile / when odd -->
+        <div v-else class="col-start-1 col-end-2 md:hidden h-16" />
+
+        <!-- CENTER BULLET (desktop only) -->
+        <!-- CENTER BULLET (desktop only) -->
+        <div class="hidden md:block col-start-2 col-end-3 relative">
+          <div class="absolute top-8 left-1/2 transform -translate-x-1/2">
+            <!-- outer: gradient background + padding -->
+            <div class="p-1.5 bg-gradient-to-br from-[#bf61ff] to-[#00cea8] rounded-full">
+              <!-- inner: transparent circle -->
+              <div class="w-3 h-3 lg:w-4 lg:h-4 bg-white/40 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT PANEL (odd items) -->
         <Motion
+          v-if="i % 2 === 1"
           as="div"
-          :style="{
-            height: heightTransform,
-            opacity: opacityTransform,
-          }"
-          class="absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-t from-purple-500 from-0% via-blue-500 via-10% to-transparent"
-        ></Motion>
+          class="col-start-1 col-end-2 md:col-start-3 md:col-end-4 bg-neutral-800/50 rounded-2xl p-4 md:p-8 shadow-lg my-12"
+          :initial="{ opacity: 0, x: 60 }"
+          :in-view="{ opacity: 1, x: 0 }"
+          :transition="{ type: 'spring', stiffness: 90, damping: 14, delay: i * 0.15 }"
+          viewport="{ amount: 0.3, once: false }"
+        >
+          <h3 class="text-2xl lg:text-3xl font-extrabold mb-3">{{ item.title }}</h3>
+          <p class="font-semibold text-lg lg:text-xl mb-1 text-neutral-300">
+            {{ item.company_name }}
+          </p>
+          <p class="text-sm lg:text-base mb-4 text-neutral-500">{{ item.date }}</p>
+          <ul class="list-disc list-inside space-y-2 text-neutral-300">
+            <li v-for="(p, idx) in item.points" :key="idx">{{ p }}</li>
+          </ul>
+        </Motion>
+
+        <!-- spacer on mobile / when even -->
+        <div v-else class="col-start-1 col-end-2 md:hidden h-16" />
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { Motion, useScroll, useTransform } from 'motion-v'
-import type { HTMLAttributes } from 'vue'
-import { onMounted, ref, watch, nextTick } from 'vue'
 
-interface Props {
-  containerClass?: HTMLAttributes['class']
-  class?: HTMLAttributes['class']
-  items?: {
-    id: string
-    label: string
-  }[]
-  title?: string
-  description?: string
+interface Item {
+  id: string
+  title: string
+  company_name: string
+  date: string
+  points: string[]
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  items: () => [],
-})
+const props = withDefaults(defineProps<{ items?: Item[] }>(), { items: () => [] })
 
 const timelineContainerRef = ref<HTMLElement | null>(null)
-const timelineRef = ref<HTMLElement | null>(null)
-const height = ref(0)
+const containerHeight = ref(0)
 
-onMounted(async () => {
-  await nextTick()
-  if (timelineRef.value) {
-    const rect = timelineRef.value.getBoundingClientRect()
-    height.value = rect.height
+onMounted(() => {
+  if (timelineContainerRef.value) {
+    containerHeight.value = timelineContainerRef.value.getBoundingClientRect().height
   }
 })
 
 const { scrollYProgress } = useScroll({
-  target: timelineRef,
-  offset: ['start 10%', 'end 50%'],
+  target: timelineContainerRef,
+  offset: ['start start', 'end end'],
 })
 
-const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1])
-const heightTransform = ref(useTransform(scrollYProgress, [0, 1], [0, 0]))
-
-watch(height, (newHeight) => {
-  heightTransform.value = useTransform(scrollYProgress, [0, 1], [0, newHeight])
-})
+const beamHeight = useTransform(scrollYProgress, [0, 1], [0, containerHeight.value])
+const beamOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1])
 </script>
+
+<style scoped>
+/* Everything is handled in Tailwind classes */
+</style>
