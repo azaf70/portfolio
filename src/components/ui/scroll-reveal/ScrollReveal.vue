@@ -17,7 +17,6 @@ const props = defineProps({
 
 const el = ref(null)
 
-// Define your “off-screen” state:
 const initial = {
   opacity: 0,
   x:
@@ -25,7 +24,6 @@ const initial = {
   y: props.direction === 'up' ? props.distance : props.direction === 'down' ? -props.distance : 0,
 }
 
-// Define your “in-view” state:
 const enter = {
   opacity: 1,
   x: 0,

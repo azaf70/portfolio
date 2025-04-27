@@ -18,7 +18,7 @@ defineProps({
 <template>
   <main
     id="content"
-    class="relative max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center sm:items-center mx-auto"
+    class="relative max-w-6xl px-4 sm:px-6 lg:px-8 mt-48 flex flex-col justify-center sm:items-center mx-auto"
   >
     <div class="text-center py-8 px-4 sm:px-6 lg:px-8">
       <h2 class="mt-1 sm:mt-3 text-4xl font-bold text-white sm:text-6xl">
