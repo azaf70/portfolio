@@ -15,13 +15,13 @@
       <div
         v-for="(item, i) in items"
         :key="item.id"
-        class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-start"
+        class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-y-32 lg:gap-y-48 xl:gap-y-64 items-start"
       >
         <!-- LEFT PANEL (even items) -->
         <Motion
           v-if="i % 2 === 0"
           as="div"
-          class="col-start-1 col-end-2 md:col-start-1 md:col-end-2 bg-neutral-800/50 rounded-2xl p-4 md:p-8 shadow-lg md:my-12 lg:my-12"
+          class="col-start-1 col-end-2 md:col-start-1 md:col-end-2 bg-neutral-800/50 rounded-2xl p-4 md:p-8 shadow-lg my-12"
           :initial="{ opacity: 0, x: -60 }"
           :in-view="{ opacity: 1, x: 0 }"
           :transition="{ type: 'spring', stiffness: 90, damping: 14, delay: i * 0.15 }"
@@ -45,7 +45,7 @@
         <div class="hidden md:block col-start-2 col-end-3 relative">
           <div class="absolute top-8 left-1/2 transform -translate-x-1/2">
             <!-- outer: gradient background + padding -->
-            <div class="p-1.5 bg-gradient-to-br from-[#bf61ff] to-[#00cea8] rounded-full">
+            <div class="p-1 bg-gradient-to-br from-[#bf61ff] to-[#00cea8] rounded-full">
               <!-- inner: transparent circle -->
               <div class="w-3 h-3 lg:w-4 lg:h-4 bg-white/40 rounded-full"></div>
             </div>

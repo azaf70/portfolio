@@ -23,12 +23,7 @@ const toggleMenu = () => {
     >
       <nav class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
-          <a
-            class="text-2xl font-semibold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent dark:from-white dark:to-gray-400 transition-all duration-300 ease-in-out hover:scale-105"
-            href="/"
-          >
-            Abdullah | Portfolio
-          </a>
+          <img src="/logo.png" alt="Logo" class="h-14 object-contain" />
 
           <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center space-x-8">
@@ -84,8 +79,8 @@ const toggleMenu = () => {
 </template>
 
 <style scoped>
-  .backdrop-blur-md {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
 </style>
