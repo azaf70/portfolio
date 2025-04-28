@@ -8,8 +8,8 @@
         <template v-for="(wordObj, wordIndex) in splitWords" :key="wordObj.word + wordIndex">
           <span
             :style="{
-              animation: `fadeInWord 0.3s ease forwards`,
-              animationDelay: `${wordIndex * 0.3}s`,
+              animation: `fadeInWord 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
+              animationDelay: `${wordIndex * 0.2}s`,
             }"
             class="inline-block whitespace-nowrap opacity-0"
           >
@@ -17,8 +17,8 @@
               v-for="(letter, letterIndex) in wordObj.letters"
               :key="wordObj.word + letterIndex"
               :style="{
-                animation: `fadeInLetter 0.2s ease forwards`,
-                animationDelay: `${wordIndex * 0.3 + letterIndex * 0.05}s`,
+                animation: `fadeInLetter 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
+                animationDelay: `${wordIndex * 0.2 + letterIndex * 0.03}s`,
               }"
               class="opacity-0 inline-block"
             >
@@ -55,7 +55,7 @@ function startAnimation() {
     const nextWord = props.words[currentIndex + 1] || props.words[0]
     currentWord.value = nextWord
     isVisible.value = true
-  }, 600)
+  }, 800)
 }
 
 const splitWords = computed(() => {
@@ -92,8 +92,8 @@ watch(isVisible, (newValue) => {
 @keyframes fadeInWord {
   0% {
     opacity: 0;
-    transform: translateY(10px);
-    filter: blur(8px);
+    transform: translateY(5px);
+    filter: blur(4px);
   }
   100% {
     opacity: 1;
@@ -105,8 +105,8 @@ watch(isVisible, (newValue) => {
 @keyframes fadeInLetter {
   0% {
     opacity: 0;
-    transform: translateY(10px);
-    filter: blur(8px);
+    transform: translateY(3px);
+    filter: blur(2px);
   }
   100% {
     opacity: 1;
@@ -116,17 +116,17 @@ watch(isVisible, (newValue) => {
 }
 
 .v-enter-active {
-  animation: enterWord 0.6s ease-in-out forwards;
+  animation: enterWord 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .v-leave-active {
-  animation: leaveWord 0.6s ease-in-out forwards;
+  animation: leaveWord 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes enterWord {
   0% {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(5px);
   }
   100% {
     opacity: 1;
@@ -142,8 +142,8 @@ watch(isVisible, (newValue) => {
   }
   100% {
     opacity: 0;
-    transform: scale(2);
-    filter: blur(8px);
+    transform: scale(1.2);
+    filter: blur(4px);
   }
 }
 </style>
